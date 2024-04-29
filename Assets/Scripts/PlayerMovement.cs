@@ -7,14 +7,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float jumpSpeed;
 
-    bool moveForwards;
-    bool moveBackwards;
-    bool moveLeft;
-    bool moveRight;
-    bool isMoving;
-    Vector3 moveDirection;
-    
+    Vector3 movementDirection;
+    float ySpeed;
+
     Rigidbody playerRigidbody;
 
     private void Start()
@@ -22,57 +20,47 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        GetDirection();
-
-        playerRigidbody.velocity = new Vector3(moveDirection.x * Vector3.forward.x * moveSpeed, playerRigidbody.velocity.y, moveDirection.y * Vector3.forward.z * moveSpeed);
-        Debug.Log(playerRigidbody.velocity);
+        Jump();
     }
 
-    void GetDirection()
+    private void FixedUpdate()
     {
-        isMoving = moveForwards || moveBackwards || moveLeft || moveRight;
+        MoveCharacter();
+        RotateCharacter();  
+    }
 
-        moveForwards = Input.GetKey(KeyCode.W);
-        moveBackwards = Input.GetKey(KeyCode.S);
-        moveLeft = Input.GetKey(KeyCode.A);
-        moveRight = Input.GetKey(KeyCode.D);
+    void MoveCharacter()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            moveDirection.y += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            moveDirection.y -= 1;
-        }
+        movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        float magnitude = movementDirection.magnitude;
+        magnitude = Mathf.Clamp01(magnitude);
+        movementDirection.Normalize();
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            moveDirection.y -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            moveDirection.y += 1;
-        }
+        playerRigidbody.velocity = new Vector3(movementDirection.x * magnitude * moveSpeed, ySpeed, movementDirection.z * magnitude * moveSpeed);
+    }
 
-        if (Input.GetKeyDown(KeyCode.A))
+    void RotateCharacter()
+    {
+        if (movementDirection != Vector3.zero)
         {
-            moveDirection.x -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            moveDirection.x += 1;
-        }
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            moveDirection.x += 1;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
-        if (Input.GetKeyUp(KeyCode.D))
+    }
+
+    void Jump()
+    {
+        ySpeed += Physics.gravity.y * Time.deltaTime;
+
+        if (Input.GetButtonDown("Jump"))
         {
-            moveDirection.x -= 1;
+            ySpeed = jumpSpeed;
         }
     }
 }
