@@ -9,6 +9,7 @@ public enum AttackTypes
     nothing,
     slash,
     laser,
+    ball,
     total
 }
 public class PlayerAttacks : MonoBehaviour

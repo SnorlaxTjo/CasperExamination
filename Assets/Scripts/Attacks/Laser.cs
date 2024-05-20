@@ -26,7 +26,7 @@ public class Laser : Weapon
     {
         if (attacks.CurrentWeapon != (int)AttackTypes.laser) { target.SetActive(false); return; }
 
-        Ray laserRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray laserRay = new Ray(player.transform.position, player.transform.forward);
         RaycastHit hit = new RaycastHit();
 
         if (Physics.Raycast(laserRay, out hit, range, hitLayers))
@@ -42,7 +42,7 @@ public class Laser : Weapon
 
     public void ShootLaser()
     {
-        Ray laserRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray laserRay = new Ray(player.transform.position, player.transform.forward);
         RaycastHit hit = new RaycastHit();
 
         if (Physics.Raycast(laserRay, out hit, range, hitLayers))
