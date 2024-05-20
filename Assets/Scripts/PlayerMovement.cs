@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
