@@ -1,10 +1,5 @@
-E
-- Gör raycast-attacken till first person vid inhållen högerklick
-- Fixa något najs för när bollen träffar något
-
 C
-- Skapa en training dummy
-- Ge slash attack en najs combo
+- Gör en najs combo
 - Skapa en attackerande fiende som går fram och bak
 
 A
@@ -20,13 +15,13 @@ Checklist kravlista Classroom
 
 E1 (Klar)
 E2 (Klar)
-E3 (Fungerande, men förbättring krävs) [E-1]
-E4 (Fungerande, men förbättring krävs) [E-2]
+E3 (Klar)
+E4 (Klar)
 E5 (Klar)
 
-C1 (Ej påbörjad) [C-1]
-C2 (Ej påbörjad) [C-2]
-C3 (Ej påbörjad) [C-3]
+C1 (Klar)
+C2 (Påbörjad) [C-1]
+C3 (Ej påbörjad) [C-2]
 C4 (Ej påbörjad)
 
 A1 (Ej påbörjad) [A-1]
@@ -37,7 +32,7 @@ A3 (Ej påbörjad) [A-2]
 
 Deadlines
 
-22 Maj - Resterande E-krav
+22 Maj - Resterande E-krav (Check)
 27 Maj - Nödvändiga C-krav
 31 Maj - Nödvändiga A-krav
-3 Juni - Sista små-touches, allt klart för inlämning
+3 Juni - Sista små-touches, allt klart för inlämning (KOMMENTERA KODEN)

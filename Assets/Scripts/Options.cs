@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class Options : MonoBehaviour
     public void SaveOptions()
     {
         optionsToSaveTo.mouseSesnitivity = mouseSensitivitySlider.value;
+        AssetDatabase.SaveAssets();
     }
 
     public void LoadOptions()

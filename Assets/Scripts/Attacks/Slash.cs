@@ -72,4 +72,9 @@ public class Slash : Weapon
     {
         slashObject.SetActive(enabled);
     }
+
+    public void ResetAttack()
+    {
+        timeAttacked = timeToDoAttack + 1;
+    }
 }

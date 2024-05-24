@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84be815645f8f844bda0fd855703a56, type: 3}
   m_Name: OptionSaver
   m_EditorClassIdentifier: 
-  mouseSesnitivity: 4
+  mouseSesnitivity: 3

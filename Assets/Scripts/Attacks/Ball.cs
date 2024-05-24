@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
     [SerializeField] float movementSpeed;
+    [SerializeField] float fasterMovementSpeed;
 
     [Space]
     [SerializeField] float lifetime;
+    [SerializeField] string[] ignoreCollisionTags;
+    [SerializeField] float timeWithoutCollider;
 
     Vector3 spawnPosition;
     Vector3 aimPosition;
     Vector3 aimDirection;
     float lifetimeLeft;
 
+    Collider ballCollider;
+
     private void Start()
     {
+        ballCollider = GetComponent<Collider>();
+
         lifetimeLeft = lifetime;
+        StartCoroutine(AddCollider());
     }
 
     public void Init(Vector3 aSpawnPosition, Vector3 anAimPosition)
@@ -43,10 +50,37 @@ public class Ball : MonoBehaviour
         }
     }
 
+    IEnumerator AddCollider()
+    {
+        yield return new WaitForSeconds(timeWithoutCollider);
+
+        ballCollider.enabled = true;
+    }
+
+    public void SpeedUp()
+    {
+        movementSpeed = fasterMovementSpeed;
+    }
+
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("Player"))
+        int collisionIgnores = 0;
+
+        foreach (string tag in ignoreCollisionTags)
         {
+            if (other.gameObject.CompareTag(tag))
+            {
+                collisionIgnores++;
+            }
+        }
+        
+        if (collisionIgnores <= 0)
+        {
+            if (other.gameObject.CompareTag("TrainingDummy"))
+            {
+                other.gameObject.GetComponent<TrainingDummy>().GotHit();
+            }
+
             lifetime = 0;
         }
     }

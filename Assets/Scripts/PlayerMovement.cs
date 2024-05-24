@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] Transform cameraTransform;
+    [SerializeField] Transform[] cameraTransform;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed;
@@ -30,14 +30,16 @@ public class PlayerMovement : MonoBehaviour
     bool canJump;
     float jumpTimeLeft;
     float lastRotation;
+    int cameraIndex;
+    bool isMoving;
 
     Rigidbody playerRigidbody;
-    Collider playerCollider;
+    Laser laser;
 
     private void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        playerCollider = GetComponent<Collider>();
+        laser = GetComponentInChildren<Laser>();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -45,13 +47,21 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Jump();
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+
+        if (laser.IsInFocusMode)
+        {
+            cameraIndex = 1;
+        }
+        else
+        {
+            cameraIndex = 0;
+        }
+        RotateCharacter();
     }
 
     private void FixedUpdate()
     {
         MoveCharacter();
-        RotateCharacter();
     }
 
     void MoveCharacter()
@@ -59,10 +69,12 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        isMoving = Mathf.Abs(horizontalInput) > Mathf.Epsilon || Mathf.Abs(verticalInput) > Mathf.Epsilon;
+
         movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float magnitude = movementDirection.magnitude;
         magnitude = Mathf.Clamp01(magnitude);
-        movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        movementDirection = Quaternion.AngleAxis(cameraTransform[cameraIndex].rotation.eulerAngles.y, Vector3.up) * movementDirection;
         movementDirection.Normalize();
 
         playerRigidbody.velocity = new Vector3(movementDirection.x * magnitude * moveSpeed, ySpeed, movementDirection.z * magnitude * moveSpeed);
@@ -70,7 +82,9 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if (movementDirection != Vector3.zero)
+        if (laser.IsInFocusMode) { return; }
+
+        if (isMoving)
         {
             lastRotation = transform.localEulerAngles.y;
 
