@@ -11,6 +11,7 @@ public class TrainingDummy : MonoBehaviour
     float timeLeftToShowText;
     bool isShowingText;
 
+    //Displays the "Got Hit" text when hitting the Target Dummy
     public void GotHit()
     {
         timeLeftToShowText = timeToShowText;

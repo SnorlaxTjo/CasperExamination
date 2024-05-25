@@ -1,13 +1,12 @@
-C
-- Gör en najs combo
-- Skapa en attackerande fiende som går fram och bak
-
 A
-- Skapa en annan rolig fiende
+- Lägg till ljud
 - Lägg till fler settings
+- Lägg till fighting-rum som levlar
 
 Övrigt
 - Fixa visuals i hotbaren som visar vilket vapen man har valt
+- Förbättra menyer, särskilt start
+- Kommentera koden (VIKTIGT)
 
 
 
@@ -20,13 +19,13 @@ E4 (Klar)
 E5 (Klar)
 
 C1 (Klar)
-C2 (Påbörjad) [C-1]
-C3 (Ej påbörjad) [C-2]
+C2 (Klar)
+C3 (Klar)
 C4 (Ej påbörjad)
 
-A1 (Ej påbörjad) [A-1]
-A2 (Ej påbörjad)
-A3 (Ej påbörjad) [A-2]
+A1 (Klar)
+A2 (Ej påbörjad) [A-3]
+A3 (Påbörjad) [A-1, A-2]
 
 
 
@@ -35,4 +34,4 @@ Deadlines
 22 Maj - Resterande E-krav (Check)
 27 Maj - Nödvändiga C-krav
 31 Maj - Nödvändiga A-krav
-3 Juni - Sista små-touches, allt klart för inlämning (KOMMENTERA KODEN)
+3 Juni - Sista små-touches, allt klart för inlämning

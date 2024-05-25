@@ -9,34 +9,43 @@ public class Ball : MonoBehaviour
 
     [Space]
     [SerializeField] float lifetime;
-    [SerializeField] string[] ignoreCollisionTags;
     [SerializeField] float timeWithoutCollider;
+
+    [Space]
+    [SerializeField] Material[] ballMaterials;
 
     Vector3 spawnPosition;
     Vector3 aimPosition;
     Vector3 aimDirection;
     float lifetimeLeft;
+    int damage;
 
     Collider ballCollider;
+
+    public int Damage { set { damage = value; } }
 
     private void Start()
     {
         ballCollider = GetComponent<Collider>();
 
         lifetimeLeft = lifetime;
+
+        GetComponent<MeshRenderer>().material = ballMaterials[0];
         StartCoroutine(AddCollider());
     }
 
+    //Gives the ball a spawn position and a direction upon spawning
     public void Init(Vector3 aSpawnPosition, Vector3 anAimPosition)
     {
         spawnPosition = aSpawnPosition;
-        aimPosition = anAimPosition;
+        aimPosition = new Vector3(anAimPosition.x, aSpawnPosition.y, anAimPosition.z);
         aimDirection = aimPosition - spawnPosition;
 
         gameObject.transform.position = spawnPosition;
         gameObject.transform.LookAt(aimDirection, transform.up);
     }
 
+    //Where the magic of moving the ball actually happens
     private void Update()
     {
         transform.position += movementSpeed * Time.deltaTime * aimDirection.normalized;
@@ -50,6 +59,8 @@ public class Ball : MonoBehaviour
         }
     }
 
+    //Collider on ball is disabled for a short period of time in the beginning to avoid collision with the object which fired it
+    //This adds that collider back after a short period of time
     IEnumerator AddCollider()
     {
         yield return new WaitForSeconds(timeWithoutCollider);
@@ -57,31 +68,36 @@ public class Ball : MonoBehaviour
         ballCollider.enabled = true;
     }
 
-    public void SpeedUp()
+    //If you shoot the ball with the laser, the ball go fast
+    public void SpeedUp(Vector3 direction)
     {
         movementSpeed = fasterMovementSpeed;
+        aimDirection = new Vector3(direction.x, 0, direction.z);
+        GetComponent<MeshRenderer>().material = ballMaterials[1];
     }
 
+    //Checks all different possible things to collide with that will actually do something, and does that thing
     private void OnCollisionEnter(Collision other)
     {
-        int collisionIgnores = 0;
-
-        foreach (string tag in ignoreCollisionTags)
+        if (other.gameObject.CompareTag("TrainingDummy"))
         {
-            if (other.gameObject.CompareTag(tag))
-            {
-                collisionIgnores++;
-            }
+            other.gameObject.GetComponent<TrainingDummy>().GotHit();
         }
-        
-        if (collisionIgnores <= 0)
+        else if (other.gameObject.CompareTag("Enemy"))
         {
-            if (other.gameObject.CompareTag("TrainingDummy"))
-            {
-                other.gameObject.GetComponent<TrainingDummy>().GotHit();
-            }
-
-            lifetime = 0;
+            other.gameObject.GetComponent<EnemyHealth>().Damage(damage);
         }
+        else if (other.gameObject.CompareTag("Ball"))
+        {
+            other.gameObject.SetActive(false);
+
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealth>().Damage(damage);
+        }
+
+        lifetime = 0;
     }
 }

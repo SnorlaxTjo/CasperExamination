@@ -10,6 +10,7 @@ public class PauseController : MonoBehaviour
 
     bool isPaused;
 
+    //Controls the pauses if you press ESC
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

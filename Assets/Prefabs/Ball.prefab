@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 84aa2e989e124db47ae1e9b17038e751, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,5 +151,7 @@ MonoBehaviour:
   lifetime: 3
   ignoreCollisionTags:
   - Player
-  - Ball
-  timeWithoutCollider: 0.25
+  timeWithoutCollider: 0.4
+  ballMaterials:
+  - {fileID: 2100000, guid: 84aa2e989e124db47ae1e9b17038e751, type: 2}
+  - {fileID: 2100000, guid: b5f802da4e3aede478b15bec0fcc6fad, type: 2}

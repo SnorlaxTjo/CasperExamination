@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9811428189f7b0428465a287d142803, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 5
   reloadTime: 1

@@ -6,4 +6,7 @@ using UnityEngine;
 public class OptionSaver : ScriptableObject
 {
     public float mouseSesnitivity;
+
+    public float musicVolumePercentage;
+    public float sfxVolumePercentage;
 }

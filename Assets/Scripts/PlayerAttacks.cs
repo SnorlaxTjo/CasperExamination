@@ -33,6 +33,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         HandleWeaponSwap();
 
+        //Triggers a unity-event calling for the selected weapon's function to fire upon left-click
         if (Input.GetMouseButtonDown(0))
         {
             if (currentWeapon != (int)AttackTypes.nothing)
@@ -42,6 +43,7 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
+    //Swaps the weapon upon scrolling
     void HandleWeaponSwap()
     {
         mouseAxisDelta -= Input.mouseScrollDelta.y;
