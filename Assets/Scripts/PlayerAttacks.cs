@@ -14,15 +14,18 @@ public enum AttackTypes
 }
 public class PlayerAttacks : MonoBehaviour
 {
-    [SerializeField] UnityEvent[] attacks;
+    [SerializeField] Attacks[] attacks;
     [SerializeField] float mouseAxisWeaponSwapBreakpoint;
 
     int currentWeapon;
+    int[] currentWeaponSubType = new int[(int)AttackTypes.total];
     float mouseAxisDelta;
+    bool isSwappingInCurrentWeapon;
 
     PlayerUIController playerUIController;
 
     public int CurrentWeapon { get { return currentWeapon; } }
+    public int[] CurrentWeaponSubType { get { return currentWeaponSubType; } }
 
     private void Start()
     {
@@ -38,8 +41,26 @@ public class PlayerAttacks : MonoBehaviour
         {
             if (currentWeapon != (int)AttackTypes.nothing)
             {
-                attacks[currentWeapon].Invoke();
+                attacks[currentWeapon].attacks[currentWeaponSubType[currentWeapon]].Invoke();
             }
+        }
+
+        if (currentWeapon != 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                isSwappingInCurrentWeapon = true;
+                playerUIController.OpenWeaponSubTypeMenu(true);
+            }
+            if (Input.GetKeyUp(KeyCode.Tab))
+            {
+                isSwappingInCurrentWeapon = false;
+                playerUIController.OpenWeaponSubTypeMenu(false);
+            }
+        }
+        else
+        {
+            isSwappingInCurrentWeapon = false;
         }
     }
 
@@ -52,14 +73,33 @@ public class PlayerAttacks : MonoBehaviour
             int swapDirectionNumber = (int)Mathf.Sign(mouseAxisDelta);
             mouseAxisDelta -= swapDirectionNumber * mouseAxisWeaponSwapBreakpoint;
 
-            int currentWeaponIndex = (int)currentWeapon + swapDirectionNumber;
-            if (currentWeaponIndex >= (int)AttackTypes.total)
+            int currentWeaponIndex;
+            
+            if (!isSwappingInCurrentWeapon)
             {
-                currentWeaponIndex = 0;
+                currentWeaponIndex = currentWeapon + swapDirectionNumber;
+
+                if (currentWeaponIndex >= (int)AttackTypes.total)
+                {
+                    currentWeaponIndex = 0;
+                }
+                else if (currentWeaponIndex < 0)
+                {
+                    currentWeaponIndex = (int)AttackTypes.total - 1;
+                }
             }
-            else if (currentWeaponIndex < 0)
+            else
             {
-                currentWeaponIndex = (int)AttackTypes.total - 1;
+                currentWeaponIndex = currentWeaponSubType[currentWeapon] + swapDirectionNumber;
+
+                if (currentWeaponIndex >= attacks[currentWeapon].attacks.Length)
+                {
+                    currentWeaponIndex = 0;
+                }
+                else if (currentWeaponIndex < 0)
+                {
+                    currentWeaponIndex = attacks[currentWeapon].attacks.Length - 1;
+                }
             }
 
             WeaponSwapAnimation(currentWeaponIndex);
@@ -68,8 +108,23 @@ public class PlayerAttacks : MonoBehaviour
 
     private void WeaponSwapAnimation(int currentWeaponIndex)
     {
-        currentWeapon = currentWeaponIndex;
-        playerUIController.ChangeHotbarSlot(currentWeapon);
+        if (!isSwappingInCurrentWeapon)
+        {
+            currentWeapon = currentWeaponIndex;
+            playerUIController.ChangeHotbarSlot(currentWeapon);
+        }
+        else
+        {
+            currentWeaponSubType[currentWeapon] = currentWeaponIndex;
+            playerUIController.SwapWeaponSubType(Mathf.Sign(mouseAxisDelta) > 0);
+        }
+
         mouseAxisDelta = 0;
     }
+}
+
+[Serializable]
+public struct Attacks
+{
+    public UnityEvent[] attacks;
 }

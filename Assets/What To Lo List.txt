@@ -1,3 +1,6 @@
+C
+- Fixa en separat lista för alla vapen med olika typer av samma vapen
+
 A
 - Lägg till ljud
 - Lägg till fler settings
@@ -21,7 +24,7 @@ E5 (Klar)
 C1 (Klar)
 C2 (Klar)
 C3 (Klar)
-C4 (Ej påbörjad)
+C4 (Påbörjad)
 
 A1 (Klar)
 A2 (Ej påbörjad) [A-3]

@@ -50,7 +50,7 @@ public class Slash : Weapon
         //The regular slash attack, going from left to right
         if (isAttacking)
         {
-            SetColliderAndMesh(true);
+            SetSlashCollider(true);
 
             knifeSidePos += (distanceToDoAttack / timeToDoAttack) * Time.deltaTime;
             transform.localPosition = new Vector3(knifeSidePos, transform.localPosition.y, transform.localPosition.z);
@@ -66,14 +66,14 @@ public class Slash : Weapon
         //If you slash again quickly after hitting something with the slash, the knife gets thrown away to a land far far away instead
         else if (isThrowing)
         {
-            SetColliderAndMesh(true);
+            SetSlashCollider(true);
             transform.position += new Vector3(transform.forward.x * (distanceToThrow / timeToDoAttack * Time.deltaTime), 0, transform.forward.z * (distanceToThrow / timeToDoAttack * Time.deltaTime));
             timeThrowed += Time.deltaTime;
             hasDoneDamage = false;
 
             if (timeThrowed >= timeToThrow)
             {
-                SetColliderAndMesh(false);
+                SetSlashCollider(false);
                 timeReloaded = 0;
                 isThrowing = false;
                 canAttack = false;
@@ -82,7 +82,7 @@ public class Slash : Weapon
         //Just sets the knife back to its original position if an attack is not happening
         else
         {
-            SetColliderAndMesh(false);
+            SetSlashCollider(false);
             transform.parent = player.transform;
             transform.localPosition = new Vector3(-distanceToDoAttack / 2, 0, 1);
             transform.localEulerAngles = Vector3.zero;
@@ -129,7 +129,7 @@ public class Slash : Weapon
     }
 
     //Makes the slashing object have a collider and mesh renderer active
-    void SetColliderAndMesh(bool enabled)
+    void SetSlashCollider(bool enabled)
     {
         slashObject.SetActive(enabled);
     }
