@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,6 +41,11 @@ public class ShootOnTimer : MonoBehaviour
     public void ShootBall()
     {
         ballWeapon.ShootBall(false, false, null);
+    }
+
+    public void Shoot3Balls()
+    {
+        ballWeapon.Shoot3Balls(false);
     }
 
 

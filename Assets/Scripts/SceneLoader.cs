@@ -1,10 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] CursorLockMode cursorLockOnStart = CursorLockMode.Locked;
+
+    [SerializeField] Toggle fullScreenToggle;
+    [SerializeField] TMP_Dropdown resolutionDropdown;
+
+    Resolution[] resolutions;
+    int selectedResolution;
+    List<Resolution> selectedResolutionsList = new List<Resolution>();
+
+    [System.Obsolete]
+    private void Start()
+    {
+        Cursor.lockState = cursorLockOnStart;
+
+        if (fullScreenToggle != null)
+        {
+            fullScreenToggle.isOn = Screen.fullScreen;
+        }
+
+        if (resolutionDropdown != null)
+        {
+            resolutions = Screen.resolutions;
+
+            List<string> resolutionStringList = new List<string>();
+            string newRes;
+            foreach (Resolution res in resolutions)
+            {
+                if (res.height * 16 / 9 == res.width)
+                {
+                    newRes = res.width + " x " + res.height;
+                    if (!resolutionStringList.Contains(newRes))
+                    {
+                        resolutionStringList.Add(newRes);
+                        selectedResolutionsList.Add(res);
+                    }
+                }                              
+            }
+
+            resolutionDropdown.AddOptions(resolutionStringList);
+        }
+    }
+
     //Loads the scene with the inputted id
     public void LoadScene(int sceneId)
     {
@@ -44,5 +87,16 @@ public class SceneLoader : MonoBehaviour
         {
             return sceneId;
         }
+    }
+
+    public void SetFullscreen(bool fullscreen)
+    {
+        Screen.fullScreen = fullscreen;
+    }
+
+    public void SetResolution()
+    {
+        selectedResolution = resolutionDropdown.value;
+        Screen.SetResolution(selectedResolutionsList[selectedResolution].width, selectedResolutionsList[selectedResolution].height, Screen.fullScreen);
     }
 }

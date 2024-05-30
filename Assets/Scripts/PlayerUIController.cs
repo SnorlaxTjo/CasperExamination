@@ -1,11 +1,6 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerUIController : MonoBehaviour
@@ -26,6 +21,7 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI reloadTime;
     [SerializeField] float nextUpScale;
     [SerializeField] float nextUpDistance;
+    [SerializeField] GameObject[] bigSlots;
 
     [Header("Health")]
     [SerializeField] Image healthBar;
@@ -91,10 +87,12 @@ public class PlayerUIController : MonoBehaviour
             if (i == slot)
             {
                 hotBarSlots[i].color = selectedWeaponHotbarColor;
+                if (i > 0) bigSlots[i - 1].SetActive(true);
             }
             else
             {
                 hotBarSlots[i].color = notSelectedWeaponHotbarColor;
+                if (i > 0) bigSlots[i - 1].SetActive(false);
             }
         }
 
@@ -115,9 +113,50 @@ public class PlayerUIController : MonoBehaviour
     {
         if (down)
         {
-            foreach (SubWeaponInfo weaponInfo in subWeaponSlots[playerAttacks.CurrentWeapon].info)
+            for (int i = 0; i < subWeaponSlots[playerAttacks.CurrentWeapon - 1].info.Length; i++)
             {
-                weaponInfo.slot.GetComponent<RectTransform>().localPosition += new Vector3(0, nextUpDistance, 0);
+                SubWeaponInfo currentInfo = subWeaponSlots[playerAttacks.CurrentWeapon - 1].info[i];
+                RectTransform currentSlotRectTransform = currentInfo.slot.GetComponent<RectTransform>();
+
+                currentSlotRectTransform.localPosition += new Vector3(0, nextUpDistance, 0);
+
+                if (i == playerAttacks.CurrentWeaponSubType[playerAttacks.CurrentWeapon])
+                {
+                    currentSlotRectTransform.localScale = Vector3.one;
+                    itemTitle.text = currentInfo.name;
+                    damage.text = "Damage: " + currentInfo.damage;
+                    reloadTime.text = "Reload Time: " + currentInfo.reloadTime.ToString();
+                    currentInfo.hotbarImage.enabled = true;
+                }
+                else
+                {
+                    currentSlotRectTransform.localScale = new Vector3(nextUpScale, nextUpScale, 1);
+                    currentInfo.hotbarImage.enabled = false;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < subWeaponSlots[playerAttacks.CurrentWeapon - 1].info.Length; i++)
+            {
+                SubWeaponInfo currentInfo = subWeaponSlots[playerAttacks.CurrentWeapon - 1].info[i];
+                RectTransform currentSlotRectTransform = currentInfo.slot.GetComponent<RectTransform>();
+
+                currentSlotRectTransform.localPosition -= new Vector3(0, nextUpDistance, 0);
+
+                if (i == playerAttacks.CurrentWeaponSubType[playerAttacks.CurrentWeapon])
+                {
+                    currentSlotRectTransform.localScale = Vector3.one;
+                    itemTitle.text = currentInfo.name;
+                    damage.text = "Damage: " + currentInfo.damage;
+                    reloadTime.text = "Reload Time: " + currentInfo.reloadTime.ToString();
+                    currentInfo.hotbarImage.enabled = true;
+                }
+                else
+                {
+                    currentSlotRectTransform.localScale = new Vector3(nextUpScale, nextUpScale, 1);
+                    currentInfo.hotbarImage.enabled = false;
+                }
             }
         }
     }

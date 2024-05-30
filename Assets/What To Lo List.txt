@@ -1,14 +1,8 @@
-C
-- Fixa en separat lista för alla vapen med olika typer av samma vapen
-
 A
 - Lägg till ljud
-- Lägg till fler settings
-- Lägg till fighting-rum som levlar
 
 Övrigt
-- Fixa visuals i hotbaren som visar vilket vapen man har valt
-- Förbättra menyer, särskilt start
+- Förbättra menyer, särskilt start och paus
 - Kommentera koden (VIKTIGT)
 
 
@@ -24,17 +18,26 @@ E5 (Klar)
 C1 (Klar)
 C2 (Klar)
 C3 (Klar)
-C4 (Påbörjad)
+C4 (Klar)
 
 A1 (Klar)
-A2 (Ej påbörjad) [A-3]
-A3 (Påbörjad) [A-1, A-2]
+A2 (Klar)
+A3 (Påbörjad) [A-1]
 
 
 
 Deadlines
 
 22 Maj - Resterande E-krav (Check)
-27 Maj - Nödvändiga C-krav
+27 Maj - Nödvändiga C-krav (Check)
 31 Maj - Nödvändiga A-krav
 3 Juni - Sista små-touches, allt klart för inlämning
+
+
+Detaljerad planering
+
+31 maj - Fixa fighting musik. Har jag tid fixar jag en loop för varje rum, annars går en bra
+
+1 juni - Fixa en najs paus meny, samt se till att allt faktiskt pausas
+2 juni - Gör startmenyn najs, med level selection
+3 juni - På lektionen, kommenera all kod samt gör sista småtouches. Lämna in

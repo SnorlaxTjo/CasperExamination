@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7207604326613336659}
   - component: {fileID: 1752982227397753510}
   m_Layer: 6
-  m_Name: Ball
+  m_Name: SmallBall
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,11 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d1762a5572d154f8f2673cb9740eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  fasterMovementSpeed: 15
-  lifetime: 3
-  ignoreCollisionTags:
-  - Player
+  movementSpeed: 7
+  fasterMovementSpeed: 20
+  lifetime: 10
   timeWithoutCollider: 0.4
   ballMaterials:
   - {fileID: 2100000, guid: 84aa2e989e124db47ae1e9b17038e751, type: 2}

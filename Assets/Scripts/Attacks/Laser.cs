@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Laser : Weapon
 {
@@ -14,7 +11,6 @@ public class Laser : Weapon
 
     [Header("Variables")]
     [SerializeField] GameObject player;
-    [SerializeField] GameObject cube;
     [SerializeField] float range;
     [SerializeField] AudioClip laserSound;
 

@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 08552f11ff79ac64d9fc362f120a1c4d
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Rooms/TrainingRoom.unity
+    guid: 7033c19f754fee44e9684a8ae0046e17
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Fight1.unity
+    guid: 35b7b5cbf60bedf4a969ec3e72b96e79
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Fight2.unity
+    guid: b7cc5b2b675f60d44a7299742e0627ff
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Fight3.unity
+    guid: 25dcf39c3d7007d4db8a76658904f325
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 941093f24aa5a4b4480e30bc21b4ab3c
   m_configObjects: {}

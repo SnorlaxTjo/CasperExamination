@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -13,12 +11,14 @@ public class EnemyHealth : MonoBehaviour
 
     EnemyButton spawnButton;
     SFXController sfx;
+    EnemyCounter counter;
 
     public EnemyButton SpawnButton { set { spawnButton = value; } }
 
     private void Start()
     {
         sfx = FindObjectOfType<SFXController>();
+        counter = FindObjectOfType<EnemyCounter>();
 
         health = maxHealth;
         healthText.text = health.ToString();
@@ -31,8 +31,13 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            spawnButton.GetComponent<Collider>().enabled = true;
-            spawnButton.GetComponent<MeshRenderer>().enabled = true;
+            if (spawnButton  != null)
+            {
+                spawnButton.GetComponent<Collider>().enabled = true;
+                spawnButton.GetComponent<MeshRenderer>().enabled = true;
+            }
+
+            counter.RemoveEnemy();
 
             gameObject.SetActive(false);
             Destroy(gameObject);

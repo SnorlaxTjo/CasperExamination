@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "OptionSaver", menuName = "ScriptableObjects/OptionSaver", order = 1)]

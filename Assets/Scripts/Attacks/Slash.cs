@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Slash : Weapon
@@ -26,7 +24,6 @@ public class Slash : Weapon
     bool hasDoneDamage;
     bool isThrowing;
     float knifeSidePos;
-    Vector3 movementDirection;
 
     SFXController sfx;
 

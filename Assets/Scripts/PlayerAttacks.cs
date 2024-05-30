@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -87,6 +85,8 @@ public class PlayerAttacks : MonoBehaviour
                 {
                     currentWeaponIndex = (int)AttackTypes.total - 1;
                 }
+
+                WeaponSwapAnimation(currentWeaponIndex);
             }
             else
             {
@@ -94,15 +94,19 @@ public class PlayerAttacks : MonoBehaviour
 
                 if (currentWeaponIndex >= attacks[currentWeapon].attacks.Length)
                 {
-                    currentWeaponIndex = 0;
+                    currentWeaponIndex = attacks[currentWeapon].attacks.Length - 1;
+                    mouseAxisDelta = 0;
                 }
                 else if (currentWeaponIndex < 0)
                 {
-                    currentWeaponIndex = attacks[currentWeapon].attacks.Length - 1;
+                    currentWeaponIndex = 0;
+                    mouseAxisDelta = 0;
+                }
+                else
+                {
+                    WeaponSwapAnimation(currentWeaponIndex);
                 }
             }
-
-            WeaponSwapAnimation(currentWeaponIndex);
         }
     }
 
