@@ -1,6 +1,3 @@
-A
-- Lägg till ljud
-
 Övrigt
 - Förbättra menyer, särskilt start och paus
 - Kommentera koden (VIKTIGT)
@@ -22,7 +19,7 @@ C4 (Klar)
 
 A1 (Klar)
 A2 (Klar)
-A3 (Påbörjad) [A-1]
+A3 (Klar)
 
 
 
@@ -36,8 +33,4 @@ Deadlines
 
 Detaljerad planering
 
-31 maj - Fixa fighting musik. Har jag tid fixar jag en loop för varje rum, annars går en bra
-
-1 juni - Fixa en najs paus meny, samt se till att allt faktiskt pausas
-2 juni - Gör startmenyn najs, med level selection
 3 juni - På lektionen, kommenera all kod samt gör sista småtouches. Lämna in

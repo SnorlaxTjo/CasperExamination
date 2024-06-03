@@ -33,7 +33,7 @@ public class Laser : Weapon
 
     private void Update()
     {
-        if (attacks.CurrentWeapon != (int)AttackTypes.laser) { return; }
+        if (attacks.CurrentWeapon != (int)AttackTypes.laser) { SetFocusMode(false); return; }
 
         //Sets into focus-mode when right-click is being held down
         //(Focus mode is a first-person mode with a cross-hair)
