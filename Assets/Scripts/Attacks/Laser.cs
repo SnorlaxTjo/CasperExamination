@@ -35,8 +35,8 @@ public class Laser : Weapon
     {
         if (attacks.CurrentWeapon != (int)AttackTypes.laser) { SetFocusMode(false); return; }
 
-        //Sets into focus-mode when right-click is being held down
-        //(Focus mode is a first-person mode with a cross-hair)
+        // Sets into focus-mode when right-click is being held down
+        // (Focus mode is a first-person mode with a cross-hair)
         if (Input.GetMouseButtonDown(1))
         {
             SetFocusMode(true);
@@ -46,7 +46,7 @@ public class Laser : Weapon
             SetFocusMode(false);
         }
 
-        //Delay on shooting, can't do that immediatley
+        // Delay on shooting, can't do that immediatley
         if (!canShoot)
         {
             timeLeftUntilUnlockShoot += Time.deltaTime;
@@ -62,7 +62,7 @@ public class Laser : Weapon
         }
     }
 
-    //Sets the player in or out of focus mode
+    // Sets the player in or out of focus mode
     void SetFocusMode(bool focusMode)
     {
         mainCamera.enabled = !focusMode;
@@ -74,7 +74,7 @@ public class Laser : Weapon
         isInFocusMode = focusMode;
     }
 
-    //Shoots the laser and sees if something gets hit
+    // Shoots the laser and sees if something gets hit
     public void ShootLaser()
     {
         if (!isInFocusMode || !canShoot) { return; }
@@ -92,7 +92,7 @@ public class Laser : Weapon
         sfx.PlaySound(laserSound);
     }
 
-    //Does whatever should be done if the laser sucessfully hit something and depening on what it hit it does different things
+    // Does whatever should be done if the laser sucessfully hit something and depening on what it hit it does different things
     void HandleEntityHit(RaycastHit hit)
     {
         if (hit.collider.gameObject.TryGetComponent(out TrainingDummy dummy))

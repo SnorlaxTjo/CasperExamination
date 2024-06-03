@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// This script was only used in the test scene I used to create new features.
+/// It is unused in the actual game, but I don't know if something will break if I remove the script, and I am too scared to try
+/// </summary>
+
 public class EnemyButton : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
@@ -8,7 +13,7 @@ public class EnemyButton : MonoBehaviour
     [SerializeField] float moveTime;
     [SerializeField] float waitTime;
 
-    //Spawns in an enemy upon shooting the button with a laser
+    // Spawns in an enemy upon shooting the button with a laser
     public void Hit()
     {
         GetComponent<Collider>().enabled = false;

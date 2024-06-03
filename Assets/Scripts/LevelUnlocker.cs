@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +15,7 @@ public class LevelUnlocker : MonoBehaviour
 
     private void Start()
     {
+        // This either sets the level buttons in the start menu to be interactable or not, or sets a level to unlocked when its scene is loaded
         if (unlockerType == UnlockerType.StartMenu)
         {
             for (int i = 0; i < selectLevelButtons.Length; i++)

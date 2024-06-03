@@ -13,6 +13,7 @@ public class SFXController : MonoBehaviour
         ChangeSfxVolume();
     }
 
+    // Sets the volume to the selected volume in the options
     public void ChangeSfxVolume()
     {
         float volumeDecimal = optionSaver.sfxVolumePercentage / 100;
@@ -20,6 +21,7 @@ public class SFXController : MonoBehaviour
         sfxSource.volume = volumeDecimal;
     }
 
+    // Plays the sent audio clip
     public void PlaySound(AudioClip clip)
     {
         sfxSource.clip = clip;

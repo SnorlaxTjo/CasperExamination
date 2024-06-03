@@ -9,14 +9,14 @@ public class SlashLine : MonoBehaviour
         slash = GetComponentInParent<Slash>();
     }
 
-    //Makes sure the line itself is always facing the right direction inside its parent
+    // Makes sure the line itself is always facing the right direction inside its parent
     private void Update()
     {
         transform.localPosition = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
     }
 
-    //Does different things when hitting something depending on whatever it hit
+    // Does different things when hitting something depending on whatever it hit
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("TrainingDummy"))

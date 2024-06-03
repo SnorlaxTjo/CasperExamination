@@ -1,9 +1,3 @@
-Övrigt
-- Förbättra menyer, särskilt start och paus
-- Kommentera koden (VIKTIGT)
-
-
-
 Checklist kravlista Classroom
 
 E1 (Klar)
@@ -27,10 +21,5 @@ Deadlines
 
 22 Maj - Resterande E-krav (Check)
 27 Maj - Nödvändiga C-krav (Check)
-31 Maj - Nödvändiga A-krav
-3 Juni - Sista små-touches, allt klart för inlämning
-
-
-Detaljerad planering
-
-3 juni - På lektionen, kommenera all kod samt gör sista småtouches. Lämna in
+31 Maj - Nödvändiga A-krav (Check)
+3 Juni - Sista små-touches, allt klart för inlämning (Check)

@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
         originalPosition = transform.position;
     }
 
-    //Moves the enemy between point A and point B, and then back from point B to point A
+    // Moves the enemy between point A and point B, and then back from point B to point A
     private void Update()
     {
         timeSpentOnCurrentThing += Time.deltaTime;
@@ -59,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    //Shows a nice sphere where point B is
+    // Shows a nice sphere where point B is
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

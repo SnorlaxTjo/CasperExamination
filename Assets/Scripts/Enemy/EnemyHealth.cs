@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
         healthText.text = health.ToString();
     }
 
-    //Does damage to the enemy upon hitting it
+    // Does damage to the enemy upon hitting it
     public void Damage(int damage)
     {
         health -= damage;

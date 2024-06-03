@@ -9,7 +9,7 @@ public class TrainingDummy : MonoBehaviour
     float timeLeftToShowText;
     bool isShowingText;
 
-    //Displays the "Got Hit" text when hitting the Target Dummy
+    // Displays the "Got Hit" text when hitting the Target Dummy
     public void GotHit()
     {
         timeLeftToShowText = timeToShowText;
@@ -19,6 +19,7 @@ public class TrainingDummy : MonoBehaviour
 
     private void Update()
     {
+        // This removes the "Got Hit" text after some time
         if (!isShowingText) { return; }
 
         timeLeftToShowText -= Time.deltaTime;

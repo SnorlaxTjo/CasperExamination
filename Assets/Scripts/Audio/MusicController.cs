@@ -13,6 +13,7 @@ public class MusicController : MonoBehaviour
         ChangeMusicVolume();
     }
 
+    // Sets the volume of the music to the selected volume in the options
     public void ChangeMusicVolume()
     {
         float volumeDecimal = optionSaver.musicVolumePercentage / 100;

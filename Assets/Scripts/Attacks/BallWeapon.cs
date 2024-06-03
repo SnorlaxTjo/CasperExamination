@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.XR;
 using UnityEngine;
 
 public class BallWeapon : Weapon
@@ -21,6 +19,8 @@ public class BallWeapon : Weapon
         sfx = FindObjectOfType<SFXController>();
 
         canShoot = true;
+        // Sets rotation objects to the right rotation
+        // The rotation objects was the easiest way I could figure out to get the small balls to go into different directions
         if (rotationObjects.Length >= 2)
         {
             rotationObjects[0].transform.localEulerAngles -= new Vector3(0, multipleBallAngles, 0);
@@ -28,7 +28,7 @@ public class BallWeapon : Weapon
         }       
     }
 
-    //Gives the delay when you shoot a ball so you can't shoot another one immediately
+    // Gives the delay when you shoot a ball so you can't shoot another one immediately
     private void Update()
     {
         if (!canShoot)
@@ -43,9 +43,10 @@ public class BallWeapon : Weapon
         }
     }
 
-    //A function that allows you to shoot the ball as player
+    // A function that allows you to shoot the ball as player
     public void ShootBallPlayer(int amount)
     {
+        // Calls different functions depending on if the player shoots 1 or 3 balls
         switch (amount)
         {
             case 1:
@@ -59,7 +60,7 @@ public class BallWeapon : Weapon
         }    
     }
 
-    //Shoots the ball, and sets spawnpoint and direction depending on if it's the player or something else firing
+    // Shoots the ball, and sets spawnpoint and direction depending on if it's the player or something else firing
     public void ShootBall(bool isPlayer, bool shouldGiveInstanceToShooter, ShootOnTimer toGiveInstanceTo)
     {
         if (isPlayer && canShoot)
@@ -89,6 +90,7 @@ public class BallWeapon : Weapon
         }
     }
 
+    // Shoots 3 balls in 3 different directions. Kinda the same as the function above, but with 3 balls instead
     public void Shoot3Balls(bool isPlayer)
     {
         if (isPlayer && canShoot)

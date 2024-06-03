@@ -41,10 +41,10 @@ public class Slash : Weapon
         ReloadAttack();       
     }
 
-    //Starts the attack
+    // Starts the attack
     void PerformAttack()
     {
-        //The regular slash attack, going from left to right
+        // The regular slash attack, going from left to right
         if (isAttacking)
         {
             SetSlashCollider(true);
@@ -60,7 +60,7 @@ public class Slash : Weapon
                 canAttack = false;
             }
         }
-        //If you slash again quickly after hitting something with the slash, the knife gets thrown away to a land far far away instead
+        // If you slash again quickly after hitting something with the slash, the knife gets thrown away to a land far far away instead
         else if (isThrowing)
         {
             SetSlashCollider(true);
@@ -76,7 +76,7 @@ public class Slash : Weapon
                 canAttack = false;
             }
         }
-        //Just sets the knife back to its original position if an attack is not happening
+        // Just sets the knife back to its original position if an attack is not happening
         else
         {
             SetSlashCollider(false);
@@ -89,7 +89,7 @@ public class Slash : Weapon
         }
     }
 
-    //Having to wait before slashing again
+    // Having to wait before slashing again
     void ReloadAttack()
     {
         if (!canAttack)
@@ -108,7 +108,7 @@ public class Slash : Weapon
         }
     }
 
-    //Starts the attack
+    // Starts the attack
     public void StartAttack()
     {
         if (canAttack)
@@ -125,13 +125,13 @@ public class Slash : Weapon
         }
     }
 
-    //Makes the slashing object have a collider and mesh renderer active
+    // Makes the slashing object have a collider and mesh renderer active
     void SetSlashCollider(bool enabled)
     {
         slashObject.SetActive(enabled);
     }
 
-    //Sets the attack to be fully done whenever it hits something
+    // Sets the attack to be fully done whenever it hits something
     public void ResetAttack()
     {
         if (isAttacking)

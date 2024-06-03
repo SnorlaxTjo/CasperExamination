@@ -1067,6 +1067,8 @@ MonoBehaviour:
   timeBeforeAutoHealing: 10
   timeBetweenEachHeal: 1
   damageSound: {fileID: 8300000, guid: e04d92db94028fd4aab9eda4a62e09f5, type: 3}
+  deadCanvas: {fileID: 0}
+  pausedCanvas: {fileID: 0}
 --- !u!1 &4391860330157407140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,8 +1268,8 @@ MonoBehaviour:
   timeToDoAttack: 1
   distanceToDoAttack: 1
   slashSfx: {fileID: 8300000, guid: 93adfa392c7526e4a8821cfc6bb336a7, type: 3}
-  timeToThrow: 2
-  distanceToThrow: 10
+  timeToThrow: 5
+  distanceToThrow: 25
   throwSfx: {fileID: 8300000, guid: 0e1a2bb3d7a0fb342a0a63fe02b6773d, type: 3}
   slashObject: {fileID: 8387675982644622556}
   player: {fileID: 8851770537700667907}

@@ -34,7 +34,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         HandleWeaponSwap();
 
-        //Triggers a unity-event calling for the selected weapon's function to fire upon left-click
+        // Triggers a unity-event calling for the selected weapon's function to fire upon left-click
         if (Input.GetMouseButtonDown(0))
         {
             if (currentWeapon != (int)AttackTypes.nothing)
@@ -43,6 +43,7 @@ public class PlayerAttacks : MonoBehaviour
             }
         }
 
+        // Opens and closes the menu to swap weapons when pressing TAB
         if (currentWeapon != 0)
         {
             if (Input.GetKeyDown(KeyCode.Tab))
@@ -62,7 +63,7 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
-    //Swaps the weapon upon scrolling
+    // Swaps the weapon upon scrolling
     void HandleWeaponSwap()
     {
         mouseAxisDelta -= Input.mouseScrollDelta.y;
@@ -73,6 +74,7 @@ public class PlayerAttacks : MonoBehaviour
 
             int currentWeaponIndex;
             
+            // This swaps weapon in the hotbar
             if (!isSwappingInCurrentWeapon)
             {
                 currentWeaponIndex = currentWeapon + swapDirectionNumber;
@@ -88,6 +90,7 @@ public class PlayerAttacks : MonoBehaviour
 
                 WeaponSwapAnimation(currentWeaponIndex);
             }
+            // This swaps weapons in the sub-menu
             else
             {
                 currentWeaponIndex = currentWeaponSubType[currentWeapon] + swapDirectionNumber;
@@ -110,6 +113,7 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
+    // This sets the selected weapon to be the weapon you scrolled to
     private void WeaponSwapAnimation(int currentWeaponIndex)
     {
         if (!isSwappingInCurrentWeapon)

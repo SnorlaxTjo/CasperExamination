@@ -33,7 +33,7 @@ public class Ball : MonoBehaviour
         StartCoroutine(AddCollider());
     }
 
-    //Gives the ball a spawn position and a direction upon spawning
+    // Gives the ball a spawn position and a direction upon spawning
     public void Init(Vector3 aSpawnPosition, Vector3 anAimPosition)
     {
         spawnPosition = aSpawnPosition;
@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour
         gameObject.transform.LookAt(aimDirection, transform.up);
     }
 
-    //Where the magic of moving the ball actually happens
+    // Where the magic of moving the ball actually happens
     private void Update()
     {
         transform.position += movementSpeed * Time.deltaTime * aimDirection.normalized;
@@ -58,8 +58,8 @@ public class Ball : MonoBehaviour
         }
     }
 
-    //Collider on ball is disabled for a short period of time in the beginning to avoid collision with the object which fired it
-    //This adds that collider back after a short period of time
+    // Collider on ball is disabled for a short period of time in the beginning to avoid collision with the object which fired it
+    // This adds that collider back after a short period of time
     IEnumerator AddCollider()
     {
         yield return new WaitForSeconds(timeWithoutCollider);
@@ -67,7 +67,7 @@ public class Ball : MonoBehaviour
         ballCollider.enabled = true;
     }
 
-    //If you shoot the ball with the laser, the ball go fast
+    // If you shoot the ball with the laser, the ball go fast
     public void SpeedUp(Vector3 direction)
     {
         movementSpeed = fasterMovementSpeed;
@@ -75,7 +75,7 @@ public class Ball : MonoBehaviour
         GetComponent<MeshRenderer>().material = ballMaterials[1];
     }
 
-    //Checks all different possible things to collide with that will actually do something, and does that thing
+    // Checks all different possible things to collide with that will actually do something, and does that thing
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("TrainingDummy"))

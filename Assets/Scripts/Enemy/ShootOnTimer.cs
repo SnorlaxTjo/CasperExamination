@@ -25,7 +25,7 @@ public class ShootOnTimer : MonoBehaviour
         time = startTime;
     }
 
-    //Just makes the enemy do its attack every once in a while
+    // Just makes the enemy do its attack every once in a while
     private void Update()
     {
         time += Time.deltaTime;
@@ -37,25 +37,26 @@ public class ShootOnTimer : MonoBehaviour
         }
     }
 
-    //Makes the enemy shoot a ball with nothing else
+    // Makes the enemy shoot a ball with nothing else
     public void ShootBall()
     {
         ballWeapon.ShootBall(false, false, null);
     }
 
+    // Makes the enemy shoot 3 tiny balls
     public void Shoot3Balls()
     {
         ballWeapon.Shoot3Balls(false);
     }
 
 
-    //Combines a ball and laser to speed up ball
+    // Combines a ball and laser to speed up ball
     public void ShootBallAndLaser()
     {
         StartCoroutine(BallAndLaserRoutine());
     }
 
-    //Does the laser shooting after 1 second
+    // Does the laser shooting after 1 second
     IEnumerator BallAndLaserRoutine()
     {
         ballWeapon.ShootBall(false, true, this);
@@ -65,7 +66,7 @@ public class ShootOnTimer : MonoBehaviour
         ShootLaser();
     }
 
-    //Shoots the laser at the ball to speed it up and aim it at the player
+    // Shoots the laser at the ball to speed it up and aim it at the player
     void ShootLaser()
     {
         if (shotBall == null) { return; }
@@ -79,6 +80,7 @@ public class ShootOnTimer : MonoBehaviour
         }
     }
 
+    // This is for the laser from the enemy. It speed up ball
     void HandleEntityHit(RaycastHit hit, Vector3 direction)
     {
         if (hit.collider.gameObject.TryGetComponent(out Ball ball))

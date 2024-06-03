@@ -14,7 +14,7 @@ public class PlayerLook : MonoBehaviour
         laser = FindObjectOfType<Laser>();
     }
 
-    //Only active when laser-weapon is in focus mode, enabling first-person aiming, and this moves the camera around
+    // Only active when laser-weapon is in focus mode, enabling first-person aiming, and this moves the camera around
     private void Update()
     {
         if (!laser.IsInFocusMode) { return; }

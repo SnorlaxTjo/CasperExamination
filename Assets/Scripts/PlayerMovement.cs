@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         MoveCharacter();
     }
 
-    //Moves the character whenever move-input has been given
+    // Moves the character whenever move-input has been given
     void MoveCharacter()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.velocity = new Vector3(movementDirection.x * magnitude * moveSpeed, ySpeed, movementDirection.z * magnitude * moveSpeed);
     }
 
-    //Rotates the character to be facing the direction of movement
+    // Rotates the character to be facing the direction of movement
     void RotateCharacter()
     {
         if (laser.IsInFocusMode) { return; }
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Controls the player's y-movement upon jumping and falling
+    // Controls the player's y-movement upon jumping and falling
     void Jump()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayerMask);
@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
 
-        //The part of falling downwards
+        // The part of falling downwards
         if (!isJumping)
         {
             if (!isGrounded)
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Locks and unlocks the mouse upon focus and not
+    // Locks and unlocks the mouse upon focus and not
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Just draws a tiny ball where the ground check is for jumping when the player is selected
+    // Just draws a tiny ball where the ground check is for jumping when the player is selected
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

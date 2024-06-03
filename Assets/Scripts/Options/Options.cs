@@ -16,8 +16,7 @@ public class Options : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVolumeDisplayText;
     [SerializeField] TextMeshProUGUI sfxVolumeDisplayText;
 
-    //Saves the options to the ScriptableObject
-
+    // Saves the options to the ScriptableObject
     public void SaveOptions()
     {
         optionsToSaveTo.mouseSesnitivity = mouseSensitivitySlider.value;
@@ -29,7 +28,7 @@ public class Options : MonoBehaviour
         FindObjectOfType<SFXController>().ChangeSfxVolume();
     }
 
-    //Loads the options currently set in the ScriptableObject
+    // Loads the options currently set in the ScriptableObject
     public void LoadOptions()
     {
         mouseSensitivitySlider.value = optionsToSaveTo.mouseSesnitivity;
@@ -41,18 +40,21 @@ public class Options : MonoBehaviour
         sfxVolumeDisplayText.text = sfxVolumeSlider.value.ToString();
     }
 
-    //Changes the display text of mouse sensitivity setting
+    // Changes the display text of mouse sensitivity setting
     public void ChangeMouseSensitivity()
     {
         sensitivityDisplayText.text = mouseSensitivitySlider.value.ToString();
     }
 
+    // Changes the display of music volume setting.
+    // This one sets the volume immediately, since there is music in the menu, and you want to hear how high it is
     public void ChangeMusicVolume()
     {
         musicVolumeDisplayText.text = musicVolumeSlider.value.ToString();
         FindObjectOfType<MusicController>().GetComponent<AudioSource>().volume = musicVolumeSlider.value / 100;
     }
 
+    // Changes the display of sfx volume setting.
     public void ChangeSfxVolume()
     {
         sfxVolumeDisplayText.text = sfxVolumeSlider.value.ToString();
